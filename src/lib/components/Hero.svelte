@@ -1,5 +1,9 @@
-<script>
+<script lang="ts">
   import SearchBar from './SearchBar.svelte';
+
+  const handleSearch = (query: string) => {
+    console.log('Search query:', query);
+  };
 </script>
 
 <section class="hero">
@@ -7,5 +11,5 @@
   <p>
     Explore trending movies, build your watchlist, and never miss out on the latest entertainment.
   </p>
-  <SearchBar />
+  <SearchBar onSearch={handleSearch} />
 </section>
