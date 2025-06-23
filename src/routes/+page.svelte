@@ -18,7 +18,7 @@
     try {
       isSearching = true;
       const res = await searchMovies(trimmedQuery);
-      alert('Search Results: ' + JSON.stringify(res, null, 2));
+      console.log('Search Results:', res);
       if (res && typeof res === 'object' && 'results' in res && Array.isArray((res as any).results)) {
         searchResults = (res as { results: any[] }).results;
       } else {

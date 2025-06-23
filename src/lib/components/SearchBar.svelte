@@ -26,5 +26,5 @@
     placeholder="Search for movies..."
     on:input={onInput}
   />
-  <button class="search-button" type="submit">Search</button>
+  <!-- <button class="search-button" type="submit">Search</button> -->
 </form>
