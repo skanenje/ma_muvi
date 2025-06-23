@@ -118,14 +118,37 @@ nav button:hover {
   }
 }
 
+.trending-movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
 .trending-movie-card {
   background-color: #4c1d95;
   height: 16rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  animation: pulse 2s infinite;
+  overflow: hidden;
+  transition: transform 0.2s ease;
 }
 
+.trending-movie-card:hover {
+  transform: scale(1.05);
+}
+
+.trending-movie-poster {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  display: block;
+}
+
+.trending-movie-info {
+  padding: 0.5rem;
+  color: white;
+  font-size: 0.9rem;
+}
 @keyframes pulse {
   0% {
     opacity: 1;
