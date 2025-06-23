@@ -16,7 +16,8 @@ nav {
   z-index: 1000;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
+  box-sizing: border-box;
 }
 
 nav div.logo {
