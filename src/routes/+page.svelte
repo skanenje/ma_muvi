@@ -7,9 +7,9 @@
   let searchResults: any[] = [];
   let isSearching = false;
 
-  async function handleSearch(event: CustomEvent<{ query: string }>) {
-    const query = event.detail.query.trim();
-    if (!query) {
+  async function handleSearch(query: string) {
+    const trimmedQuery = query.trim();
+    if (!trimmedQuery) {
       searchResults = [];
       isSearching = false;
       return;
@@ -17,22 +17,26 @@
 
     try {
       isSearching = true;
-      const res = await searchMovies(query);
-      console.log('Search Results:', res);
+      const res = await searchMovies(trimmedQuery);
+      alert('Search Results: ' + JSON.stringify(res, null, 2));
       if (res && typeof res === 'object' && 'results' in res && Array.isArray((res as any).results)) {
         searchResults = (res as { results: any[] }).results;
       } else {
         searchResults = [];
       }
     } catch (err) {
-      console.error('Search failed:', err);
+      let errorMessage = 'Unknown error';
+      if (err instanceof Error) {
+        errorMessage = err.message;
+      }
+      alert('Search failed: ' + errorMessage);
     } finally {
       isSearching = false;
     }
   }
 </script>
 
-<Hero on:search={handleSearch} />
+<Hero onSearch={handleSearch} />
 
 {#if isSearching}
   <p class="text-center text-purple-300 mt-6">Searching...</p>

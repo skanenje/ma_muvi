@@ -1,8 +1,14 @@
 <script lang="ts">
   import SearchBar from './SearchBar.svelte';
 
+  export let onSearch: (query: string) => void;
+
   const handleSearch = (query: string) => {
-    console.log('Search query:', query);
+    if (onSearch) {
+      onSearch(query);
+    } else {
+      console.warn('onSearch handler not provided');
+    }
   };
 </script>
 
