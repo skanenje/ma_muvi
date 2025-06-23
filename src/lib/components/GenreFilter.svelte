@@ -31,10 +31,10 @@
 </style>
 
 <div class="text-center mt-6">
-  <select class="genre-dropdown" on:change={handleSelect} bind:value={selectedGenreId}>
-    <option value="0">Browse by Genre</option>
+  <select class="genre-dropdown" on:change={handleSelect}>
+    <option value="0" selected={selectedGenreId === 0}>Browse by Genre</option>
     {#each genres as genre}
-      <option value={genre.id}>{genre.name}</option>
+      <option value={genre.id} selected={selectedGenreId === genre.id}>{genre.name}</option>
     {/each}
   </select>
 </div>
