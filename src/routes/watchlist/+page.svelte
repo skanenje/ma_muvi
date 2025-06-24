@@ -53,5 +53,12 @@
         </a>
       {/each}
     </div>
+    <div class="mt-6">
+      <a href="/recommend">
+        <button class="button">
+          🎯 Get Recommendations
+        </button>
+      </a>
+    </div>
   {/if}
   

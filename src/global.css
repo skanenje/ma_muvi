@@ -113,6 +113,18 @@ nav a.watchlist-button:hover {
 
 .movie-poster {
   width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.movie-info {
+  padding: 0.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.movie-poster {
+  width: 100%;
   height: 70%;
   object-fit: cover;
 }
@@ -251,4 +263,16 @@ section h2 span:first-child {
 }
 .button.secondary {
   background-color: #6b7280;
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.movie-info {
+  padding: 0.5rem;
+  color: white;
+  font-weight: bold;
 }
