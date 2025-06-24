@@ -2,11 +2,12 @@ import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
 type WatchlistItem = {
-  id: string; 
+  id: string;
   type: 'movie' | 'tv';
   title: string;
   poster_path: string;
   watched: boolean;
+  genre_ids?: number[]; // <-- Add this
 };
 
 function createWatchlist() {
