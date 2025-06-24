@@ -31,3 +31,14 @@ export function getGenres(mediaType: 'movie' | 'tv' = 'movie') {
 export function discoverMoviesByGenre(genreId: number, page = 1) {
   return apiFetch(`${BASE}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${API_KEY}`);
 }
+export async function searchMulti(query: string, page = 1) {
+  const res = await fetch(
+    `${BASE}/search/multi?api_key=${API_KEY}&query=${encodeURIComponent(query)}&page=${page}`
+  );
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch search results');
+  }
+
+  return res.json(); // includes total_pages, total_results
+}
