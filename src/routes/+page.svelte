@@ -95,27 +95,3 @@
     <TrendingMovies />
   </section>
 {/if}
-
-<style>
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .pagination button {
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    background-color: #6d28d9;
-    color: white;
-    font-weight: bold;
-    border: none;
-  }
-
-  .pagination button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-</style>
