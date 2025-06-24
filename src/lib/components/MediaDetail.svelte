@@ -23,7 +23,8 @@
       type: mediaType,
       title: media.title || media.name,
       poster_path: media.poster_path,
-      watched: false
+      watched: false,
+      genre_ids: media.genre_ids || media.genres?.map((g: { id: number }) => g.id) || []
     });
   }
 
