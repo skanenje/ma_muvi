@@ -39,12 +39,18 @@
   {:else if recommendations.length === 0}
     <p class="text-purple-300">Add items to your watchlist to get recommendations.</p>
   {:else}
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="trending-movies">
       {#each recommendations as movie}
-        <a href={`/movie/${movie.id}`}>
-          <div class="rounded-lg shadow bg-purple-800 overflow-hidden">
-            <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title} />
-            <div class="p-2 text-white font-semibold">{movie.title}</div>
+        <a href={`/movie/${movie.id}`} class="movie-card-link">
+          <div class="movie-card">
+            <img
+              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+              alt={movie.title}
+              class="movie-poster"
+            />
+            <div class="movie-info">
+              {movie.title}
+            </div>
           </div>
         </a>
       {/each}
