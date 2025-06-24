@@ -28,3 +28,6 @@ export function getTrending(mediaType: 'movie' | 'tv' = 'movie') {
 export function getGenres(mediaType: 'movie' | 'tv' = 'movie') {
 	return apiFetch(`${BASE}/genre/${mediaType}/list?api_key=${API_KEY}`);
 }
+export function discoverMoviesByGenre(genreId: number, page = 1) {
+  return apiFetch(`${BASE}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${API_KEY}`);
+}
