@@ -55,7 +55,7 @@
     </div>
     <div class="mt-6">
       <a href="/recommend">
-        <button class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-600">
+        <button class="button">
           🎯 Get Recommendations
         </button>
       </a>
