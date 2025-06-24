@@ -14,9 +14,14 @@ export async function searchMovies(query: string, page = 1) {
 }
 
 
-export function searchTVShows(query: string, page = 1) {
-	return apiFetch(`${BASE}/search/tv?query=${encodeURIComponent(query)}&page=${page}&api_key=${API_KEY}`);
+export async function searchTv(query: string, page = 1) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&query=${encodeURIComponent(query)}&page=${page}`
+  );
+  if (!res.ok) throw new Error('Failed to fetch search results');
+  return res.json(); // includes `results`, `total_pages`, `page`
 }
+
 
 export function getMovieDetails(id: string) {
 	return apiFetch(`${BASE}/movie/${id}?api_key=${API_KEY}`);
