@@ -16,6 +16,9 @@
   let totalPages = 1;
   let activeQuery = '';
 
+  let currentGenrePage = 1;
+  let totalGenrePages = 1;
+
   async function handleSearch(query: string, page = 1) {
     query = query.trim();
     selectedGenreId = 0;
@@ -45,26 +48,31 @@
     }
   }
 
-  async function handleGenreSelect(id: number) {
-    searchResults = [];
-    genreResults = [];
-    if (id === 0) return;
+  async function handleGenreSelect(id: number, page = 1) {
+  searchResults = [];
+  genreResults = [];
 
-    selectedGenreId = id;
-    isGenreLoading = true;
-    try {
-      const res = await discoverMoviesByGenre(id) as { results?: any[] };
-      if (res && Array.isArray(res.results)) {
-        genreResults = res.results;
-      } else {
-        genreResults = [];
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      isGenreLoading = false;
+  if (id === 0) return;
+
+  selectedGenreId = id;
+  currentGenrePage = page;
+
+  isGenreLoading = true;
+  try {
+    const res = await discoverMoviesByGenre(id, page) as { results: any[]; total_pages: number };
+    if (res && Array.isArray(res.results)) {
+      genreResults = res.results;
+      totalGenrePages = res.total_pages;
+    } else {
+      genreResults = [];
     }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    isGenreLoading = false;
   }
+}
+
 </script>
 
 <Hero onSearch={handleSearch} />
@@ -87,6 +95,15 @@
   <p class="text-center text-purple-300 mt-6">Loading genre movies...</p>
 {:else if genreResults.length > 0}
   <SearchResults results={genreResults} />
+  <div class="pagination">
+  <button disabled={currentGenrePage === 1} on:click={() => handleGenreSelect(selectedGenreId, currentGenrePage - 1)}>
+    ⬅ Previous
+  </button>
+  <span>Page {currentGenrePage} of {totalGenrePages}</span>
+  <button disabled={currentGenrePage === totalGenrePages} on:click={() => handleGenreSelect(selectedGenreId, currentGenrePage + 1)}>
+    Next ➡
+  </button>
+</div>
 {:else}
   <section class="px-6 mt-10">
     <h2 class="text-xl font-semibold mb-4 flex items-center gap-2 text-yellow-300">
