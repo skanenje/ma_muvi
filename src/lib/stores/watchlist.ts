@@ -14,7 +14,15 @@ function createWatchlist() {
   //   localStorage.removeItem('watchlist');
   // }
   const stored = browser ? localStorage.getItem('watchlist') : null;
-  const initial = stored ? JSON.parse(stored) : [];
+  let initial = [];
+  if (stored) {
+    try {
+      initial = JSON.parse(stored);
+    } catch (error) {
+      console.error("Error parsing watchlist from localStorage:", error);
+      initial = [];
+    }
+  }
 
   const { subscribe, update, set } = writable<WatchlistItem[]>(initial);
 
@@ -47,7 +55,7 @@ function createWatchlist() {
 export const watchlist = createWatchlist();
 
 if (browser) {
-  window.addEventListener('beforeunload', () => {
-    localStorage.removeItem('watchlist');
-  });
+  // window.addEventListener('beforeunload', () => {
+  //   localStorage.removeItem('watchlist');
+  // });
 }
