@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store';
+import { browser } from '$app/environment';
 
 type WatchlistItem = {
-  id: number;
+  id: string; // Changed from number to string
   type: 'movie' | 'tv';
   title: string;
   poster_path: string;
@@ -9,13 +10,15 @@ type WatchlistItem = {
 };
 
 function createWatchlist() {
-  const stored = localStorage.getItem('watchlist');
+  const stored = browser ? localStorage.getItem('watchlist') : null;
   const initial = stored ? JSON.parse(stored) : [];
 
   const { subscribe, update, set } = writable<WatchlistItem[]>(initial);
 
   subscribe((value) => {
-    localStorage.setItem('watchlist', JSON.stringify(value));
+    if (browser) {
+      localStorage.setItem('watchlist', JSON.stringify(value));
+    }
   });
 
   return {
@@ -26,9 +29,9 @@ function createWatchlist() {
           ? list
           : [...list, item]
       ),
-    remove: (id: number, type: 'movie' | 'tv') =>
+    remove: (id: string, type: 'movie' | 'tv') => // Changed parameter type
       update((list) => list.filter((i) => i.id !== id || i.type !== type)),
-    toggleWatched: (id: number, type: 'movie' | 'tv') =>
+    toggleWatched: (id: string, type: 'movie' | 'tv') => // Changed parameter type
       update((list) =>
         list.map((i) =>
           i.id === id && i.type === type ? { ...i, watched: !i.watched } : i

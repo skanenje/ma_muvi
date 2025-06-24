@@ -1,6 +1,5 @@
 <script lang="ts">
   import { watchlist } from '$lib/stores/watchlist';
-  import { get } from 'svelte/store';
 
   // props from parent
   export let media: any;
@@ -10,19 +9,17 @@
   const IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
 
   // local state
-  let isInWatchlist = false;
+  $: isInWatchlist = $watchlist.find((i) => i.id === String(media.id) && i.type === mediaType) !== undefined;
   let isWatched = false;
 
   $: {
-    const current = get(watchlist);
-    const match = current.find((i) => i.id === media.id && i.type === mediaType);
-    isInWatchlist = !!match;
+    const match = $watchlist.find((i) => i.id === String(media.id) && i.type === mediaType);
     isWatched = match?.watched || false;
   }
 
   function handleAdd() {
     watchlist.add({
-      id: media.id,
+      id: String(media.id), // Convert to string
       type: mediaType,
       title: media.title || media.name,
       poster_path: media.poster_path,
@@ -31,11 +28,11 @@
   }
 
   function handleRemove() {
-    watchlist.remove(media.id, mediaType);
+    watchlist.remove(String(media.id), mediaType); // Convert to string
   }
 
   function toggleWatched() {
-    watchlist.toggleWatched(media.id, mediaType);
+    watchlist.toggleWatched(String(media.id), mediaType); // Convert to string
   }
 
   function extractRatings(omdb: any) {
@@ -53,7 +50,6 @@
 
   const { imdb, rt } = extractRatings(omdb);
 </script>
-
 
 <div class="media-detail">
   <img

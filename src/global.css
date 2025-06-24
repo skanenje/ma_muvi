@@ -36,16 +36,17 @@ nav div.logo span:first-child {
 
 }
 
-nav button {
+nav a.watchlist-button {
   background-color: #6b46c1;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.75rem;
   font-weight: bold;
   transition: background-color 0.3s;
+  text-decoration: none;
 }
 
-nav button:hover {
+nav a.watchlist-button:hover {
   background-color: #553c9a;
 }
 

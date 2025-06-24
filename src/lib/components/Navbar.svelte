@@ -3,7 +3,7 @@
     <span>🎬</span>
     <span>Diskava</span>
   </div>
-  <button>
+  <a href="/watchlist" class="watchlist-button">
     ⭐ Watchlist (0)
-  </button>
+  </a>
 </nav>
