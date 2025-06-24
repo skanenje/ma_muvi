@@ -10,6 +10,9 @@ type WatchlistItem = {
 };
 
 function createWatchlist() {
+  if (browser) {
+    localStorage.removeItem('watchlist');
+  }
   const stored = browser ? localStorage.getItem('watchlist') : null;
   const initial = stored ? JSON.parse(stored) : [];
 

@@ -4,6 +4,6 @@
     <span>Diskava</span>
   </div>
   <a href="/watchlist" class="watchlist-button">
-    ⭐ Watchlist (0)
+    ⭐ Watchlist 
   </a>
 </nav>
