@@ -40,7 +40,7 @@
           <div class="card">
             <img
               class="poster"
-              src={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '/fallback.jpg'}
+              src={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : 'static/fallback.jpg'}
               alt={item.title}
             />
             <div class="info">
