@@ -1,11 +1,19 @@
-// Handles common fetch logic and error handling.
-export async function apiFetch<T>(url: string): Promise<T> {
-	try {
-		const res = await fetch(url);
-		if (!res.ok) throw new Error(`API error: ${res.status}`);
-		return await res.json();
-	} catch (error) {
-		console.error('API Fetch Failed:', error);
-		throw error;
-	}
+export async function safeFetch(url: string, options: RequestInit = {}) {
+  try {
+    const res = await fetch(url, options);
+
+    if (res.status === 429) {
+      throw new Error('Rate limit exceeded. Please wait and try again.');
+    }
+
+    if (!res.ok) {
+      const message = `API error ${res.status}: ${res.statusText}`;
+      throw new Error(message);
+    }
+
+    return await res.json();
+  } catch (err) {
+    console.error('API fetch error:', err);
+    throw err; // bubble up to UI
+  }
 }

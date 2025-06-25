@@ -18,6 +18,7 @@
 
   let currentGenrePage = 1;
   let totalGenrePages = 1;
+  let errorMessage: string = '';
 
   async function handleSearch(query: string, page = 1) {
     query = query.trim();
@@ -38,11 +39,12 @@
         searchResults = res.results;
         totalPages = res.total_pages;
         currentPage = res.page;
+        errorMessage = '';
       } else {
         searchResults = [];
       }
-    } catch (err) {
-      console.error(err);
+    }  catch (err: any) {
+      errorMessage = err.message || 'An unexpected error occurred.';
     } finally {
       isSearching = false;
     }
@@ -63,11 +65,12 @@
     if (res && Array.isArray(res.results)) {
       genreResults = res.results;
       totalGenrePages = res.total_pages;
+      errorMessage = '';
     } else {
       genreResults = [];
     }
-  } catch (err) {
-    console.error(err);
+  }catch (err: any) {
+  errorMessage = err.message || 'An unexpected error occurred.';
   } finally {
     isGenreLoading = false;
   }
@@ -77,6 +80,9 @@
 
 <Hero onSearch={handleSearch} />
 <GenreFilter {selectedGenreId} onSelect={handleGenreSelect} />
+{#if errorMessage}
+  <p class="text-center text-red-400 mt-4">{errorMessage}</p>
+{/if}
 
 {#if isSearching}
   <p class="text-center text-purple-300 mt-6">Searching...</p>

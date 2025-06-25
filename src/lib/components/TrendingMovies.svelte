@@ -35,7 +35,7 @@
     <div class="movie-card">
       <img
         class="movie-poster"
-        src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '/fallback.jpg'}
+        src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : 'static/fallback.jpg'}
         alt={movie.title}
       />
       <div class="movie-info">
