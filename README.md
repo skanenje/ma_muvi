@@ -63,7 +63,6 @@ Excluded from MVP but planned for future iterations:
 
 ## 📸 Screenshots
 
-Place the screenshot images in the `static/` directory.
 
 ![Placeholder Screenshot 1](static/placeholder_screenshot_1.png)
 ![Placeholder Screenshot 2](static/placeholder_screenshot_2.png)
