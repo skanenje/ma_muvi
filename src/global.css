@@ -145,7 +145,7 @@ nav a.watchlist-button:hover {
     grid-template-columns: repeat(5, 1fr);
   }
 }
-
+/* trending grid styles */
 .trending-movies {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -264,7 +264,7 @@ section h2 span:first-child {
 .button.secondary {
   background-color: #6b7280;
 }
-
+/* movie poster */
 .movie-poster {
   width: 100%;
   height: auto;
@@ -276,6 +276,8 @@ section h2 span:first-child {
   color: white;
   font-weight: bold;
 }
+
+/* pagination styles */
   .pagination {
     display: flex;
     justify-content: center;

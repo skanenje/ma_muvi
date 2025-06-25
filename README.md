@@ -34,3 +34,70 @@ Excluded from MVP but planned for future iterations:
 - Social sharing / trailer embeds
 - Export watchlist as PDF or CSV
 
+---
+
+## 🚀 Setup Instructions
+
+1.  Clone the repository:
+
+    ```bash
+    git clone https://github.com/your-username/ma_muvi.git
+    ```
+2.  Install the dependencies:
+
+    ```bash
+    npm install
+    ```
+3.  Create a `.env` file in the root directory and add your TMDB API key:
+
+    ```
+    VITE_TMDB_API_KEY=your_tmdb_api_key
+    ```
+4.  Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 📸 Screenshots
+
+![Placeholder Screenshot 1](placeholder_screenshot_1.png)
+![Placeholder Screenshot 2](placeholder_screenshot_2.png)
+
+---
+
+## ⚙️ API Documentation
+
+### TMDB API
+
+The application uses the TMDB API to fetch movie and TV show data.
+
+*   **Trending Movies:** [`src/lib/api/tmdb.ts`](src/lib/api/tmdb.ts)
+    ```typescript
+    export const getTrendingMovies = async () => {
+      const res = await client.get('/trending/movie/week');
+      return res.data.results;
+    };
+    ```
+*   **Trending TV Shows:** [`src/lib/api/tmdb.ts`](src/lib/api/tmdb.ts)
+    ```typescript
+    export const getTrendingTVShows = async () => {
+      const res = await client.get('/trending/tv/week');
+      return res.data.results;
+    };
+    ```
+
+### OMDB API
+
+The application uses the OMDB API to fetch additional movie data.
+
+*   **Get Movie Details:** [`src/lib/api/omdb.ts`](src/lib/api/omdb.ts)
+    ```typescript
+    export const getMovieDetails = async (id: string) => {
+      const res = await client.get(`/?i=${id}&apikey=${API_KEY}`);
+      return res.data;
+    };
+    ```
+---
