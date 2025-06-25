@@ -80,6 +80,9 @@
 
 <Hero onSearch={handleSearch} />
 <GenreFilter {selectedGenreId} onSelect={handleGenreSelect} />
+{#if errorMessage}
+  <p class="text-center text-red-400 mt-4">{errorMessage}</p>
+{/if}
 
 {#if isSearching}
   <p class="text-center text-purple-300 mt-6">Searching...</p>
