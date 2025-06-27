@@ -4,6 +4,9 @@ A responsive web app for discovering movies and TV shows, managing watchlists, a
 
 ---
 
+Preveiw at    
+    https://muvi-zone.vercel.app/
+
 ## ✅ Project Overview
 
 This full-featured application is designed to help users discover, explore, and manage their engagement with movies and TV shows. Built with performance, usability, and extensibility in mind, it leverages real-time search, detailed media information, persistent watchlist management, and trending recommendations.
