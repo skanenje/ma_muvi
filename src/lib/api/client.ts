@@ -1,4 +1,12 @@
+import { getCached, setCached } from './cache';
+
 export async function safeFetch(url: string, options: RequestInit = {}) {
+  const cached = getCached(url);
+  if (cached) {
+    console.log('✅ Cache hit for:', url);
+    return cached;
+  }
+
   try {
     const res = await fetch(url, options);
 
@@ -11,9 +19,11 @@ export async function safeFetch(url: string, options: RequestInit = {}) {
       throw new Error(message);
     }
 
-    return await res.json();
+    const json = await res.json();
+    setCached(url, json);
+    return json;
   } catch (err) {
     console.error('API fetch error:', err);
-    throw err; // bubble up to UI
+    throw err;
   }
 }
